@@ -13,11 +13,6 @@ go.sum
 .idea/
 .vscode/
 
-# Swagger documentation (generated files)
-server/docs/docs.go
-server/docs/swagger.json
-server/docs/swagger.yaml
-
 # Environment variables
 .env
 

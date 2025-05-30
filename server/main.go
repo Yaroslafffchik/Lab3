@@ -20,7 +20,7 @@ var db *sql.DB
 func initDB() {
 	var err error
 	// Убедитесь, что PostgreSQL запущен и доступен с этими параметрами
-	db, err = sql.Open("postgres", "host=localhost port=5432 user=postgres password=CAXAPOK2005ya dbname=db sslmode=disable")
+	db, err = sql.Open("postgres", "host=localhost port=5432 user=postgres password=ВАШПАРОЛЬ dbname=db sslmode=disable")
 	if err != nil {
 		log.Fatalf("Ошибка подключения к базе данных: %v", err)
 	}
