@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог товаров</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 250px;
+            margin: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .card .price {
+            font-size: 1.1em;
+            color: #2ecc71;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .card .description {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .card .categories {
+            font-size: 0.8em;
+            color: #777;
+            margin-bottom: 10px;
+        }
+        .loading {
+            font-size: 1.5em;
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Каталог товаров</h1>
+
+<div class="loading" id="loading">Загрузка...</div>
+
+<div class="container" id="product-container">
+</div>
+
+<script>
+    async function fetchProducts() {
+        try {
+            const response = await fetch('http://127.0.0.1:8080/api/products');
+            const products = await response.json();
+
+            document.getElementById('loading').style.display = 'none';
+
+            const container = document.getElementById('product-container');
+            container.innerHTML = '';
+
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                card.innerHTML = `
+                        <h3>${product.name}</h3>
+                        <p class="price">${product.price} руб.</p>
+                        <p class="description">${product.description}</p>
+                        <p class="categories"><strong>Категории:</strong> ${product.categories.join(', ')}</p>
+                    `;
+
+                container.appendChild(card);
+            });
+        } catch (error) {
+            document.getElementById('loading').innerText = 'Ошибка загрузки данных!';
+            console.error('Error fetching products:', error);
+        }
+    }
+
+
+    window.onload = fetchProducts;
+</script>
+
+</body>
+</html>

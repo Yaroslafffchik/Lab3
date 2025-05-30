@@ -1,0 +1,25 @@
+# Go build artifacts
+server/server       # Компилируемый исполняемый файл для Linux/macOS
+server/*.exe        # Компилируемый исполняемый файл для Windows
+server/*.test       # Тестовые исполняемые файлы
+server/*.out        # Выходные файлы тестов
+*.o                 # Объектные файлы
+
+# Go module cache
+.go/
+go.sum
+
+# IDE files (GoLand/IntelliJ, VS Code)
+.idea/
+.vscode/
+
+# Swagger documentation (generated files)
+server/docs/docs.go
+server/docs/swagger.json
+server/docs/swagger.yaml
+
+# Environment variables
+.env
+
+# Logs
+*.log
